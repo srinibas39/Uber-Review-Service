@@ -1,9 +1,17 @@
 package com.example.uberreviewservice.models;
 
 import jakarta.persistence.*;
+import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 
 import java.util.Date;
 
+@Builder // need builder to build the tabel
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="bookingReview") // name of the table
 public class Review {
@@ -13,14 +21,18 @@ public class Review {
     Long id;
 
     @Column(nullable = false)
-    String content;
+    private String content;
 
-    Double Rating;
+    private Double Rating;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
+    @CreatedDate //timeestamp of created object
+    private Date createdAt;
 
     @Column(nullable = false)
-    Date createdAt;
-
-    @Column(nullable = false)
-    Date updatedAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    @LastModifiedBy //timestamp of updated Object
+    private Date updatedAt;
 
 }
