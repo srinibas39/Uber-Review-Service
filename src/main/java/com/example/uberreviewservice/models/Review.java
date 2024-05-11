@@ -7,7 +7,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 
 import java.util.Date;
 
-@Builder // need builder to build the tabel
+@Builder // need builder to build the records
 @Getter
 @Setter
 @NoArgsConstructor
