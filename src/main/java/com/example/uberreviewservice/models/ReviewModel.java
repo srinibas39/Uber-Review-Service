@@ -3,7 +3,8 @@ package com.example.uberreviewservice.models;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
 
@@ -12,9 +13,10 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 @Table(name="bookingReview") // name of the table
-public class Review {
+public class ReviewModel {
 
     @Id //making id as primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment
@@ -32,7 +34,7 @@ public class Review {
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    @LastModifiedBy //timestamp of updated Object
+    @LastModifiedDate //timestamp of updated Object
     private Date updatedAt;
 
 }
