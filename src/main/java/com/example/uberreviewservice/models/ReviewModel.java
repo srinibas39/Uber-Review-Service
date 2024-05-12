@@ -16,6 +16,7 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 @Entity
 @Table(name="bookingReview") // name of the table
+@Inheritance(strategy = InheritanceType.JOINED)
 public class ReviewModel extends BaseModel {
 
 //    @Id //making id as primary key
