@@ -8,7 +8,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class DriverModel extends ReviewModel{
+public class DriverReviewModel extends ReviewModel{
 
     @Column(nullable = false)
     private String driverComment;
