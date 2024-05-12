@@ -2,11 +2,7 @@ package com.example.uberreviewservice.models;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.util.Date;
 
 @Builder // need builder to build the records
 @Getter
@@ -17,7 +13,7 @@ import java.util.Date;
 @Entity
 @Table(name="bookingReview") // name of the table
 @Inheritance(strategy = InheritanceType.JOINED)
-public class ReviewModel extends BaseModel {
+public class Review extends BaseModel {
 
 //    @Id //making id as primary key
 //    @GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment

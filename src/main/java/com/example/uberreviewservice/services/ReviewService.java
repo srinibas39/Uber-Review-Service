@@ -1,6 +1,6 @@
 package com.example.uberreviewservice.services;
 
-import com.example.uberreviewservice.models.ReviewModel;
+import com.example.uberreviewservice.models.Review;
 import com.example.uberreviewservice.repositories.ReviewRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
@@ -21,13 +21,13 @@ public class ReviewService implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("****************");
-        ReviewModel r = ReviewModel.builder().content("Excellent Ride").Rating(4.0).build();
+        Review r = Review.builder().content("Excellent Ride").Rating(4.0).build();
         System.out.println(r);
         reviewRepositories.save(r);
 
-        List<ReviewModel>  reviewList = reviewRepositories.findAll();
+        List<Review>  reviewList = reviewRepositories.findAll();
 
-        for(ReviewModel review : reviewList){
+        for(Review review : reviewList){
             System.out.println(review.getContent());
             System.out.println(review.getRating());
         }
