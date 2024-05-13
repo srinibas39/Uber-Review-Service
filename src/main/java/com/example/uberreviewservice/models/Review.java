@@ -24,6 +24,9 @@ public class Review extends BaseModel {
 
     private Double Rating;
 
+    @OneToOne
+    private Booking booking;
+
 //    @Temporal(TemporalType.TIMESTAMP)
 //    @Column(nullable = false)
 //    @CreatedDate //timeestamp of created object
