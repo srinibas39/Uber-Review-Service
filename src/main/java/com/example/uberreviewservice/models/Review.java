@@ -27,6 +27,12 @@ public class Review extends BaseModel {
     @OneToOne
     private Booking booking;
 
+//    @ManyToOne
+//    private Driver driver;
+//
+//    @ManyToOne
+//    private Passenger passenger;
+
 //    @Temporal(TemporalType.TIMESTAMP)
 //    @Column(nullable = false)
 //    @CreatedDate //timeestamp of created object
