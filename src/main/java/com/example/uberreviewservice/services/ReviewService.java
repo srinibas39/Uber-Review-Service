@@ -1,9 +1,6 @@
 package com.example.uberreviewservice.services;
 
-import com.example.uberreviewservice.models.Booking;
-import com.example.uberreviewservice.models.BookingStatus;
-import com.example.uberreviewservice.models.Driver;
-import com.example.uberreviewservice.models.Review;
+import com.example.uberreviewservice.models.*;
 import com.example.uberreviewservice.repositories.BookingRepository;
 import com.example.uberreviewservice.repositories.DriverRepository;
 import com.example.uberreviewservice.repositories.ReviewRepository;
@@ -81,6 +78,15 @@ public class ReviewService implements CommandLineRunner {
 //            String liscence = driver.getCarLisence();
 //            System.out.println(liscence);
 //        }
+
+        //Custom Driver
+
+        Optional<CustomDriver> drivers = driverRepositories.hibernateFindById(2L);
+
+       if(drivers.isPresent()){
+           String driverName = drivers.get().getName();
+           System.out.println("hello "+driverName);
+       }
 
 
     }
