@@ -58,29 +58,29 @@ public class ReviewService implements CommandLineRunner {
 //            System.out.println(review.getRating());
 //        }
 
-//       Optional<Driver> driver = driverRepositories.findByIdAndAndCarLisence(1L,"ABCD");
-//       if(driver.isPresent()){
-//           String driverName = driver.get().getName();
-//           System.out.println(driverName);
-//
-//           List<Booking> bookings = bookingRepositories.findByDriver_Id(1L);
-//
-//
-//           for(Booking booking : bookings){
-//               System.out.println(booking.getBookingStatus());
-//           }
-//
-//
-//       }
+       Optional<Driver> driver = driverRepositories.hibernateFindByIdAndCarLisence(1L,"ABCD");
+       if(driver.isPresent()){
+           String driverName = driver.get().getName();
+           System.out.println(driverName);
+
+           List<Booking> bookings = bookingRepositories.findByDriver_Id(1L);
+
+
+           for(Booking booking : bookings){
+               System.out.println(booking.getBookingStatus());
+           }
+
+
+       }
 
         //fetch Type --> eager , lazy
 
-        Optional<Driver> drivers = driverRepositories.findById(1L);
-        if(drivers.isPresent()){
-            Driver driver = drivers.get();
-            String liscence = driver.getCarLisence();
-            System.out.println(liscence);
-        }
+//        Optional<Driver> drivers = driverRepositories.findById(1L);
+//        if(drivers.isPresent()){
+//            Driver driver = drivers.get();
+//            String liscence = driver.getCarLisence();
+//            System.out.println(liscence);
+//        }
 
 
     }
