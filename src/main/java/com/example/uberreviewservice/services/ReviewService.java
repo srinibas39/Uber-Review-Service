@@ -4,14 +4,15 @@ import com.example.uberreviewservice.models.*;
 import com.example.uberreviewservice.repositories.BookingRepository;
 import com.example.uberreviewservice.repositories.DriverRepository;
 import com.example.uberreviewservice.repositories.ReviewRepository;
+import jakarta.persistence.Inheritance;
+import jakarta.transaction.Transactional;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
+@Transactional
 public class ReviewService implements CommandLineRunner {
 
     //do dependecies injection for repositories
@@ -55,20 +56,20 @@ public class ReviewService implements CommandLineRunner {
 //            System.out.println(review.getRating());
 //        }
 
-       Optional<Driver> driver = driverRepositories.hibernateFindByIdAndCarLisence(1L,"ABCD");
-       if(driver.isPresent()){
-           String driverName = driver.get().getName();
-           System.out.println(driverName);
-
-           List<Booking> bookings = bookingRepositories.findByDriver_Id(1L);
-
-
-           for(Booking booking : bookings){
-               System.out.println(booking.getBookingStatus());
-           }
-
-
-       }
+//       Optional<Driver> driver = driverRepositories.hibernateFindByIdAndCarLisence(1L,"ABCD");
+//       if(driver.isPresent()){
+//           String driverName = driver.get().getName();
+//           System.out.println(driverName);
+//
+//           List<Booking> bookings = bookingRepositories.findByDriver_Id(1L);
+//
+//
+//           for(Booking booking : bookings){
+//               System.out.println(booking.getBookingStatus());
+//           }
+//
+//
+//       }
 
         //fetch Type --> eager , lazy
 
@@ -81,12 +82,33 @@ public class ReviewService implements CommandLineRunner {
 
         //Custom Driver
 
-        Optional<CustomDriver> drivers = driverRepositories.hibernateFindById(2L);
+//        Optional<CustomDriver> drivers = driverRepositories.hibernateFindById(2L);
+//
+//       if(drivers.isPresent()){
+//           String driverName = drivers.get().getName();
+//           System.out.println("hello "+driverName);
+//       }
 
-       if(drivers.isPresent()){
-           String driverName = drivers.get().getName();
-           System.out.println("hello "+driverName);
-       }
+        List<Long> ids = new ArrayList<>(Arrays.asList(1L,2l,3l,4L,5L,6L,7L,8L,9L));
+        List<Driver> drivers = driverRepositories.findAllByIdIn(ids);
+
+//        List<Booking> bookings = bookingRepositories.findAllByDriverIn(drivers);
+//
+//        for(Booking booking : bookings){
+//            System.out.println(booking.getId());
+//        }
+
+        for(Driver driver : drivers){
+            List<Booking> bookings = driver.getBookings();
+//            for(Booking booking : bookings){
+//                System.out.print(booking.getId()+" ");
+//            }
+            bookings.forEach(booking -> System.out.print(booking.getId()+" "));
+     System.out.println("");
+        }
+
+
+
 
 
     }

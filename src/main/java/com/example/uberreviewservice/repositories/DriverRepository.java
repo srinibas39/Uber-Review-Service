@@ -11,21 +11,22 @@ import java.util.Optional;
 
 public interface DriverRepository extends JpaRepository<Driver, Long> {
 
-    //complex queries
-    //usign JPS
-    Optional<Driver> findByIdAndAndCarLisence(Long id, String carLisence);
+//    //complex queries
+//    //usign JPS
+//    Optional<Driver> findByIdAndAndCarLisence(Long id, String carLisence);
+//
+//    //using native sql
+//    @Query(nativeQuery = true, value = "SELECT * FROM driver WHERE id = :id AND car_lisence = :car_lisence")
+//    Optional<Driver> rawFindByIdAndCarLisence(@Param("id") Long id, @Param("car_lisence") String carLisence);
+//
+//    //using hibernate
+//    @Query("SELECT d FROM Driver d WHERE d.id = :id AND d.carLisence = :carLisence")
+//    Optional<Driver> hibernateFindByIdAndCarLisence(@Param("id") Long id, @Param("carLisence") String carLisence);
+//
+//    @Query("SELECT new com.example.uberreviewservice.models.CustomDriver(d.name, d.carLisence) FROM Driver d WHERE d.id = :id")
+//    Optional<CustomDriver> hibernateFindById(@Param("id") Long id);
 
-    //using native sql
-    @Query(nativeQuery = true, value = "SELECT * FROM driver WHERE id = :id AND car_lisence = :car_lisence")
-    Optional<Driver> rawFindByIdAndCarLisence(@Param("id") Long id, @Param("car_lisence") String carLisence);
-
-    //using hibernate
-    @Query("SELECT d FROM Driver d WHERE d.id = :id AND d.carLisence = :carLisence")
-    Optional<Driver> hibernateFindByIdAndCarLisence(@Param("id") Long id, @Param("carLisence") String carLisence);
-
-    @Query("SELECT new com.example.uberreviewservice.models.CustomDriver(d.name, d.carLisence) FROM Driver d WHERE d.id = :id")
-    Optional<CustomDriver> hibernateFindById(@Param("id") Long id);
-
+    List<Driver> findAllByIdIn(List<Long> ids);
 
 
 
