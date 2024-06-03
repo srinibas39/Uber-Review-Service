@@ -21,6 +21,8 @@ public class Driver extends BaseModel {
     @Column(unique = true)
     private String carLisence;
 
+    private Number phoneNumber;
+
     //one to many relationship
     //A driver can have many bookings
 
