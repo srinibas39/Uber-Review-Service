@@ -21,7 +21,7 @@ public interface ReviewRepository extends JpaRepository<Review,Long> {
       @Query("SELECT r from Booking b inner join Review r where b.id=:bookingId")
       List<Review> findReviewByBookingId(Long bookingId);
 
-
+      Review deleteReviewById(Long id);
 
 }
 
