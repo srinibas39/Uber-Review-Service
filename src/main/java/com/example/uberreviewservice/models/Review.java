@@ -22,7 +22,7 @@ public class Review extends BaseModel {
     @Column(nullable = false)
     private String content;
 
-    private Double Rating;
+    private Double rating;
 
     @OneToOne
     private Booking booking;
