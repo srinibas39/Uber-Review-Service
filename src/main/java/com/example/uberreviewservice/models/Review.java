@@ -43,4 +43,10 @@ public class Review extends BaseModel {
 //    @LastModifiedDate //timestamp of updated Object
 //    private Date updatedAt;
 
+    public void updateFrom(Review review){
+        this.content = review.getContent();
+        this.booking = review.getBooking();
+        this.rating = review.getRating();
+    }
+
 }
