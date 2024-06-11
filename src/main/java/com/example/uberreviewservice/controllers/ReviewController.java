@@ -5,6 +5,7 @@ import com.example.uberreviewservice.models.Review;
 import com.example.uberreviewservice.services.ReviewService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class ReviewController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getReviewById(@PathVariable long id) {
+    public ResponseEntity<?> getReviewById(@Validated @PathVariable long id) {
         try {
             Optional<Review> review = this.reviewService.findReviewById(id);
             if (review.isPresent()) {

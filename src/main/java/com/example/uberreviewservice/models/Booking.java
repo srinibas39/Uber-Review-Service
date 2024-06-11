@@ -15,8 +15,8 @@ import java.util.Date;
 @Builder
 public class Booking extends BaseModel {
 
-    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
-    private Review review;
+//    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+//    private Review review;
 
     @Enumerated(EnumType.STRING)
     private BookingStatus bookingStatus;
@@ -30,10 +30,10 @@ public class Booking extends BaseModel {
     private Long totalDistance;
 
     //Many to one --> one Booking can have many driver
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Driver driver;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Passenger passenger;
 
 

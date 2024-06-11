@@ -24,24 +24,10 @@ public class Review extends BaseModel {
 
     private Double rating;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(nullable = false)
     private Booking booking;
 
-//    @ManyToOne
-//    private Driver driver;
-//
-//    @ManyToOne
-//    private Passenger passenger;
-
-//    @Temporal(TemporalType.TIMESTAMP)
-//    @Column(nullable = false)
-//    @CreatedDate //timeestamp of created object
-//    private Date createdAt;
-//
-//    @Column(nullable = false)
-//    @Temporal(TemporalType.TIMESTAMP)
-//    @LastModifiedDate //timestamp of updated Object
-//    private Date updatedAt;
 
     public void updateFrom(Review review){
         this.content = review.getContent();
