@@ -1,6 +1,9 @@
 package com.example.uberreviewservice.controllers;
 
 
+import com.example.uberreviewservice.adapters.CreateReviewToReviewAdapter;
+import com.example.uberreviewservice.dtos.CreateReviewDto;
+import com.example.uberreviewservice.dtos.ResponseReviewDto;
 import com.example.uberreviewservice.models.Review;
 import com.example.uberreviewservice.services.ReviewService;
 import org.springframework.http.HttpStatus;
@@ -18,14 +21,31 @@ public class ReviewController {
 
     private ReviewService reviewService;
 
-    public ReviewController(ReviewService reviewService){
+    private CreateReviewToReviewAdapter createReviewToReviewAdapter;
+
+    public ReviewController(ReviewService reviewService , CreateReviewToReviewAdapter createReviewToReviewAdapter){
         this.reviewService = reviewService;
+        this.createReviewToReviewAdapter = createReviewToReviewAdapter;
     }
 
     @PostMapping
-    public ResponseEntity<Review> publishReview(@RequestBody Review request){
-       Review review = this.reviewService.publishReview(request);
-       return new ResponseEntity<>(review, HttpStatus.CREATED);
+    public ResponseEntity<?> publishReview(@RequestBody CreateReviewDto request){
+        Review incomingReview = createReviewToReviewAdapter.convertDto(request);
+        if(incomingReview == null){
+            return new ResponseEntity<>("invalid arguments",HttpStatus.BAD_REQUEST);
+        }
+        else{
+            Review review = this.reviewService.publishReview(incomingReview);
+            ResponseReviewDto resp = ResponseReviewDto.builder()
+                    .rating(review.getRating())
+                    .createdAt(review.getCreatedAt())
+                    .updatedAt(review.getUpdatedAt())
+                    .content(review.getContent())
+                    .booking(review.getBooking().getId())
+                    .id(review.getId()).build();
+            return new ResponseEntity<>(resp,HttpStatus.CREATED);
+
+        }
     }
 
     @GetMapping
