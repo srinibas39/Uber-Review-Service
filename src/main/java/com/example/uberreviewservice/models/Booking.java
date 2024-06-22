@@ -1,5 +1,6 @@
 package com.example.uberreviewservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
@@ -13,6 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+//@JsonIgnoreProperties({"driver","passenger"})
 public class Booking extends BaseModel {
 
 //    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
